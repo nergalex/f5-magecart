@@ -15,6 +15,7 @@ Introduction
 This blog provides a formjacking code in order to understand how it works.
 
 F5 customers are protected from magecart style attack by `F5 Client-Side Defense <https://www.f5.com/cloud/products/client-side-defense>`_:
+
     - **Analyse** the behavior of all Javascripts executed on your website
     - **Alert** your Cyber-SOC team if a javascript behaves like a malware and take action immediately (allow/block)
     - **Block** malicious Javascript execution
