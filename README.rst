@@ -34,7 +34,7 @@ Configuration guide
 - Open the file `skimmer.js <https://github.com/nergalex/f5-magecart/blob/master/skimmer.js>`_
 - The first 3 lines describe elements to grab user data.
 
-.. code-block:: html
+.. code-block:: javascript
 
     window["data_leak_label_email"] = ["input[id*='wsi-login-credentials-form-email']", "input[name*='email']", "input[type*='email']"]
     window["data_leak_label_password"] = ["input[id*='wsi-login-credentials-form-password']", "input[name*='password']"]
