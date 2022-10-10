@@ -100,9 +100,13 @@ BIG-IP UI configuration for JS redirection:
     Local Traffic  ››  Virtual Servers ››  vs-demo
     +-- HTML Profile: html-demo
 
-    Local Traffic  ››  Policies : Policy
+    Local Traffic  ››  Policies : Policy csd-magecart (see tmsh config below)
 
-.. code-block:: tcl
+    Local Traffic  ››  Virtual Servers ››  vs-demo
+    +-- HTML Profile: html-demo
+    +-- ltm policy: csd-magecart
+
+.. code-block:: bash
 
     ltm policy csd-magecart {
         rules {
@@ -164,11 +168,6 @@ BIG-IP UI configuration for JS redirection:
         }
         strategy first-match
     }
-
-
-    Local Traffic  ››  Virtual Servers ››  vs-demo
-    +-- HTML Profile: html-demo
-    +-- ltm policy: csd-magecart
 
 - Enable compression on client-side / downstream-side if ORIGIN servers use compression
 
