@@ -32,7 +32,7 @@ Configuration guide
     <input ... id="login-credentials-form-password" name="password-uuid" type="password" ...>
 
 - Open the file `skimmer.js <https://github.com/nergalex/f5-magecart/blob/master/skimmer.js>`_
-- Update the first 2 or 3 lines describing ``input`` elements to grab user data.
+- Update the first 2 or 3 lines describing ``input`` elements to grab user data. See `examples </example>`_
 
 .. code-block:: javascript
 
