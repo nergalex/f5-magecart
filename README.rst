@@ -165,6 +165,7 @@ BIG-IP UI configuration for JS redirection:
         strategy first-match
     }
 
+
     Local Traffic  ››  Virtual Servers ››  vs-demo
     +-- HTML Profile: html-demo
     +-- ltm policy: csd-magecart
