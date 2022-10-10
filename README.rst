@@ -106,7 +106,7 @@ BIG-IP UI configuration for JS redirection:
     +-- HTML Profile: html-demo
     +-- ltm policy: csd-magecart
 
-.. code-block:: json
+.. code-block:: tcl
 
     ltm policy csd-magecart {
         rules {
