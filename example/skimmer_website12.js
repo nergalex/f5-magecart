@@ -56,7 +56,7 @@ function get_elements_selector(selector_list) {
 function get_element_value(selectors) {
      var element = get_element_selector(selectors);
      if (!element) return false;
-     return element.value;
+     return element;
 }
 
 function listener_fetch_data_leak() {
