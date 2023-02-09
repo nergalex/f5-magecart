@@ -76,7 +76,8 @@ Man In the Middle
 - If DNS domain is spoofed, rewrite SNI and headers (HOST, ORIGIN and eventually others required by the App)
 - Inject malware JS `skimmer.js <https://github.com/nergalex/f5-magecart/blob/master/skimmer.js>`_ in all or specific pages
 
-**NGINX configuration for JS insertion and redirection:**
+**NGINX**
+    See below the NGINX+ configuration for Juiceshop Single Page Application:
 
 .. code-block:: nginx
 
