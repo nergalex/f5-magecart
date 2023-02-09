@@ -77,7 +77,7 @@ Man In the Middle
 - Inject malware JS `skimmer.js <https://github.com/nergalex/f5-magecart/blob/master/skimmer.js>`_ in all or specific pages
 
 **NGINX**
-    See below the NGINX+ configuration for Juiceshop Single Page Application:
+    See below the NGINX+ configuration for `juice-shop <https://github.com/juice-shop/juice-shop>`_ Single Page Application:
 
 .. code-block:: nginx
 
