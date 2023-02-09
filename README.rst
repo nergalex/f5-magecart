@@ -76,10 +76,9 @@ Man In the Middle
 - If DNS domain is spoofed, rewrite SNI and headers (HOST, ORIGIN and eventually others required by the App)
 - Inject malware JS `skimmer.js <https://github.com/nergalex/f5-magecart/blob/master/skimmer.js>`_ in all or specific pages
 
-NGINX configuration for JS insertion and redirection:
+**NGINX configuration for JS insertion and redirection:**
 
-
-.. code-block:: bash
+.. code-block:: nginx
 
     user  nginx;
     worker_processes  auto;
@@ -123,7 +122,7 @@ NGINX configuration for JS insertion and redirection:
         }
     }
 
-BIG-IP UI configuration for JS insertion:
+**BIG-IP UI configuration for JS insertion:**
 
     Local Traffic  ››  Profiles : Content : HTML : Rules /Common/form_grabber
     +-- Match settings ››  Match Tag Name: head
@@ -135,7 +134,7 @@ BIG-IP UI configuration for JS insertion:
     Local Traffic  ››  Virtual Servers ››  vs-demo
     +-- HTML Profile: html-demo
 
-BIG-IP UI configuration for JS redirection:
+**BIG-IP UI configuration for JS redirection:**
 
     Local Traffic  ››  Profiles : Content : HTML : Rules /Common/form_grabber
     +-- Match settings ››  Match Tag Name: head
